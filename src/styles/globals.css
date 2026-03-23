@@ -4,18 +4,25 @@
 @tailwind utilities;
 
 @layer base {
+  *, *::before, *::after {
+    -webkit-tap-highlight-color: transparent; /* removes blue flash on tap */
+    touch-action: manipulation;               /* kills double-tap zoom */
+  }
+
   body {
     @apply font-inter bg-hal-content-bg text-hal-text;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    overflow-x: hidden;
+    user-select: none;                        /* no text selection */
+    -webkit-user-select: none;
+    overscroll-behavior: none;                /* prevents pull-to-refresh */
+    overflow: hidden;                         /* no body scroll on kiosk */
+    -webkit-touch-callout: none;
   }
 
   h1, h2, h3, h4 {
     @apply font-rajdhani;
   }
 
-  /* Hide scrollbars */
+  /* Hide ALL scrollbars globally */
   * {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -33,5 +40,6 @@
 @layer components {
   .btn-primary {
     @apply bg-hal-navy text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:bg-hal-navy-light active:scale-95;
+    touch-action: manipulation;
   }
 }

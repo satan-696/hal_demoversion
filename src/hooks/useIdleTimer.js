@@ -1,37 +1,24 @@
-import { useEffect, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const useIdleTimer = (timeoutMs = 4 * 60 * 1000) => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const timer = useRef(null);
 
-  const handleIdle = useCallback(() => {
-    if (location.pathname !== '/login' && location.pathname !== '/animation') {
+  const reset = () => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
       navigate('/login');
-    }
-  }, [navigate, location]);
+    }, timeoutMs);
+  };
 
   useEffect(() => {
-    let timer;
-
-    const resetTimer = () => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(handleIdle, timeoutMs);
-    };
-
-    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-    
-    events.forEach(event => {
-      window.addEventListener(event, resetTimer);
-    });
-
-    resetTimer();
-
+    const events = ['touchstart', 'touchmove', 'click', 'keydown', 'mousemove'];
+    events.forEach(e => window.addEventListener(e, reset));
+    reset();
     return () => {
-      if (timer) clearTimeout(timer);
-      events.forEach(event => {
-        window.removeEventListener(event, resetTimer);
-      });
+      clearTimeout(timer.current);
+      events.forEach(e => window.removeEventListener(e, reset));
     };
-  }, [handleIdle, timeoutMs]);
+  }, []);
 };
