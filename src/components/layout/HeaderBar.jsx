@@ -7,7 +7,7 @@ const HeaderBar = ({ activeModuleName }) => {
   const { formattedTime, formattedDate } = useClock();
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 shadow-lg">
+    <header className="w-full z-50 shadow-lg">
       {/* Top strip — HAL branding + user info */}
       <div className="bg-hal-navy-dark flex items-center justify-between px-3 md:px-6 py-1.5 border-b border-white/10">
         {/* Left: HAL logo area */}

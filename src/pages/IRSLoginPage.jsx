@@ -15,7 +15,7 @@ const IRSLoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center font-serif p-4">
+    <div className="h-screen w-full bg-white flex flex-col items-center justify-center font-serif p-4 kiosk-scroll overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
       {/* Back Button */}
       <button 
         onClick={() => navigate('/')}

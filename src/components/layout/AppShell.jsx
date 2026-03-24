@@ -12,17 +12,24 @@ const AppShell = () => {
   useIdleTimer(4 * 60 * 1000);
 
   return (
-    <div className="min-h-screen bg-hal-content-bg flex flex-col font-inter selection:bg-hal-sky selection:text-white">
+    <div className="h-screen bg-hal-content-bg flex flex-col font-inter selection:bg-hal-sky selection:text-white overflow-hidden">
       {/* Fixed top bars: header (~70px) + navbar (~50px) = ~120px total */}
       <HeaderBar activeModuleName={activeModule.name} />
       
-      <div className="mt-[90px] sm:mt-[95px] md:mt-[100px] flex flex-col flex-1">
+      <div className="flex flex-col flex-1 overflow-hidden">
         <ModuleNavbar
           activeModuleId={activeModuleId}
           onModuleChange={setModule}
         />
 
-        <main className="flex-1 px-3 md:px-6 pt-4 md:pt-6 pb-28 md:pb-32 overflow-y-auto">
+        <main 
+          className="flex-1 px-3 md:px-6 pt-4 md:pt-6 kiosk-scroll overflow-y-auto"
+          style={{ 
+            overscrollBehavior: 'contain',
+            WebkitOverflowScrolling: 'touch',
+            touchAction: 'pan-y',
+          }}
+        >
           <Outlet context={{ activeModule, setModule }} />
         </main>
 

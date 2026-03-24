@@ -43,3 +43,35 @@
     touch-action: manipulation;
   }
 }
+
+@layer utilities {
+  /* Kiosk content scroll zone */
+  .kiosk-scroll {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Thin scrollbar — visible enough to hint scrollability */
+  .kiosk-scroll::-webkit-scrollbar { width: 4px; display: block !important; }
+  .kiosk-scroll::-webkit-scrollbar-track { background: transparent; }
+  .kiosk-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0,48,135,0.35);
+    border-radius: 4px;
+  }
+
+  /* Dropdown inner list */
+  .kiosk-dropdown-list {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    max-height: 50vh;
+    touch-action: pan-y;
+  }
+  .kiosk-dropdown-list::-webkit-scrollbar { width: 4px; display: block !important; }
+  .kiosk-dropdown-list::-webkit-scrollbar-thumb {
+    background: rgba(0,48,135,0.35);
+    border-radius: 4px;
+  }
+}

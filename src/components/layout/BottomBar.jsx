@@ -12,7 +12,7 @@ const APPROVALS = [
 
 const BottomBar = () => {
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 bg-hal-content-bg border-t-2 border-hal-border shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
+    <div className="w-full z-50 bg-hal-content-bg border-t-2 border-hal-border shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
       {/* Section label */}
       <div className="text-center py-1.5 bg-white border-b border-hal-border">
         <span className="text-hal-navy font-rajdhani font-bold text-sm md:text-base uppercase tracking-widest">
